@@ -17,13 +17,13 @@ class NilaiPreferensi extends Controller
 
         for ($i=0; $i < count($negatif); $i++) { 
             $pref = new Temp_Nilai_Pref;
-            $pref->nama = $negatif->nama;
-            $pref->jarak_kampus = $negatif->jarak_kampus / ($negatif->jarak_kampus + $positif->jarak_kampus);
-            $pref->jarak_market = $negatif->jarak_market / ($negatif->jarak_market + $positif->jarak_market);
-            $pref->harga = $negatif->harga / ($negatif->harga + $positif->harga);
-            $pref->kebersihan = $negatif->kebersihan / ($negatif->kebersihan + $positif->kebersihan);
-            $pref->keamanan = $negatif->keamanan / ($negatif->keamanan + $positif->keamanan);
-            $pref->fasilitas = $negatif->fasilitas / ($negatif->fasilitas + $positif->fasilitas);
+            $pref->nama = $negatif[$i]->nama;
+            $pref->jarak_kampus = $negatif[$i]->jarak_kampus / ($negatif[$i]->jarak_kampus + $positif[$i]->jarak_kampus);
+            $pref->jarak_market = $negatif[$i]->jarak_market / ($negatif[$i]->jarak_market + $positif[$i]->jarak_market);
+            $pref->harga = $negatif[$i]->harga / ($negatif[$i]->harga + $positif[$i]->harga);
+            $pref->kebersihan = $negatif[$i]->kebersihan / ($negatif[$i]->kebersihan + $positif[$i]->kebersihan);
+            $pref->keamanan = $negatif[$i]->keamanan / ($negatif[$i]->keamanan + $positif[$i]->keamanan);
+            $pref->fasilitas = $negatif[$i]->fasilitas / ($negatif[$i]->fasilitas + $positif[$i]->fasilitas);
             $pref->save();
         }
 
