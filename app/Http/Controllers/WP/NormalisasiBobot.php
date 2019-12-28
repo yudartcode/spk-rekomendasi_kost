@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\WP;
 
+use App\BobotNormal;
 use App\Http\Controllers\Controller;
 use App\Temp_Bobot;
 use Illuminate\Http\Request;
@@ -13,12 +14,15 @@ class NormalisasiBobot extends Controller
         $bobot = Temp_Bobot::all();
         $bobotNormal = [];
         foreach ($bobot as $k) {
-            $bobotNormal[0] = ($k->jarak_kampus / ($k->jarak_kampus + $k->jarak_market + $k->harga + $k->kebersihan + $k->keamanan + $k->fasilitas))*-1;
-            $bobotNormal[1] = ($k->jarak_market / ($k->jarak_kampus + $k->jarak_market + $k->harga + $k->kebersihan + $k->keamanan + $k->fasilitas))*-1;
-            $bobotNormal[2] = ($k->harga / ($k->jarak_kampus + $k->jarak_market + $k->harga + $k->kebersihan + $k->keamanan + $k->fasilitas))*-1;
-            $bobotNormal[3] = $k->kebersihan / ($k->jarak_kampus + $k->jarak_market + $k->harga + $k->kebersihan + $k->keamanan + $k->fasilitas);
-            $bobotNormal[4] = $k->keamanan / ($k->jarak_kampus + $k->jarak_market + $k->harga + $k->kebersihan + $k->keamanan + $k->fasilitas);
-            $bobotNormal[5] = $k->fasilitas / ($k->jarak_kampus + $k->jarak_market + $k->harga + $k->kebersihan + $k->keamanan + $k->fasilitas);
+            $b = new BobotNormal;
+            $b->nama = $k->nama;
+            $b->jarak_kampus = ($k->jarak_kampus / ($k->jarak_kampus + $k->jarak_market + $k->harga + $k->kebersihan + $k->keamanan + $k->fasilitas))*-1;
+            $b->jarak_market = ($k->jarak_market / ($k->jarak_kampus + $k->jarak_market + $k->harga + $k->kebersihan + $k->keamanan + $k->fasilitas))*-1;
+            $b->harga = ($k->harga / ($k->jarak_kampus + $k->jarak_market + $k->harga + $k->kebersihan + $k->keamanan + $k->fasilitas))*-1;
+            $b->kebersihan = $k->kebersihan / ($k->jarak_kampus + $k->jarak_market + $k->harga + $k->kebersihan + $k->keamanan + $k->fasilitas);
+            $b->keamanan = $k->keamanan / ($k->jarak_kampus + $k->jarak_market + $k->harga + $k->kebersihan + $k->keamanan + $k->fasilitas);
+            $b->fasilitas = $k->fasilitas / ($k->jarak_kampus + $k->jarak_market + $k->harga + $k->kebersihan + $k->keamanan + $k->fasilitas);
+            $b->save();
         }
     }
 }
