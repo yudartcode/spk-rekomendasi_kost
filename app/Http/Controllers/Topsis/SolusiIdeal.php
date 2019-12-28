@@ -4,17 +4,34 @@ namespace App\Http\Controllers\Topsis;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Temp_D_Pos;
+use App\Temp_D_Neg;
+use App\Temp_Normalisasi;
 
 class SolusiIdeal extends Controller
 {
     public function SolusiIdeal()
     {
-        $mJarakKampus = [2, 4, 3, 5, 1];
-        $mJarakMarket = [3, 2, 3, 4, 2];
-        $mHarga = [1, 3, 2, 3, 1];
-        $mKebersihan = [2, 3, 1, 2, 3];
-        $mKeamanan = [2, 3, 1, 2, 3];
-        $mFasilitas = [1, 4, 3, 2, 1];
+        $data = Temp_Normalisasi::all();    
+        $mNama = [];
+        $mJarakKampus = [];
+        $mJarakMarket = [];
+        $mHarga = [];
+        $mKebersihan = [];
+        $mKeamanan = [];
+        $mFasilitas = [];
+
+        $i = 0;
+        foreach ($data as $key) {
+            $mNama[$i] = $key->nama;
+            $mJarakKampus[$i] = $key->jarak_kampus;            
+            $mJarakMarket[$i] = $key->jarak_market;
+            $mHarga[$i] = $key->harga;
+            $mKebersihan[$i] = $key->kebersihan;
+            $mKeamanan[$i] = $key->keamanan;
+            $mFasilitas[$i] = $key->fasilitas;
+            $i++;
+        }
 
         // alternatif ideal positif
         $y1Positif = min($mJarakKampus);
@@ -33,46 +50,31 @@ class SolusiIdeal extends Controller
         $y6Negatif = min($mFasilitas);
 
         //perhitungan ideal positif
-        $d1Positif = [];
-        $d2Positif = [];
-        $d3Positif = [];
-        $d4Positif = [];
-        $d5Positif = [];
-        $d6Positif = [];
-        for ($i=0; $i < count($mJarakKampus); $i++) { 
-            $d1Positif[$i] = sqrt(pow(($y1Positif - $mJarakKampus[$i]),2));
-            $d2Positif[$i] = sqrt(pow(($y2Positif - $mJarakMarket[$i]),2));
-            $d3Positif[$i] = sqrt(pow(($y3Positif - $mHarga[$i]),2));
-            $d4Positif[$i] = sqrt(pow(($y4Positif - $mKebersihan[$i]),2));
-            $d5Positif[$i] = sqrt(pow(($y5Positif - $mKeamanan[$i]),2));
-            $d6Positif[$i] = sqrt(pow(($y6Positif - $mFasilitas[$i]),2));
+        for ($i=0; $i < count($mNama); $i++) { 
+            $dPositif = new Temp_D_Pos;
+            $dPositif->nama = $mNama[$i];
+            $dPositif->jarak_kampus = sqrt(pow(($y1Positif - $mJarakKampus[$i]),2));
+            $dPositif->jarak_market = sqrt(pow(($y2Positif - $mJarakMarket[$i]),2));
+            $dPositif->harga = sqrt(pow(($y3Positif - $mHarga[$i]),2));
+            $dPositif->kebersihan = sqrt(pow(($y4Positif - $mKebersihan[$i]),2));
+            $dPositif->keamanan = sqrt(pow(($y5Positif - $mKeamanan[$i]),2));
+            $dPositif->fasilitas = sqrt(pow(($y6Positif - $mFasilitas[$i]),2));
+            $dPositif->save();
         }
         //perhitungan ideal negatif
-        $dNegatif = [];
-        for ($i=0; $i < count($mJarakKampus); $i++) { 
-            $dNegatif[$i] = sqrt(
-                pow(($mJarakKampus[$i] - $y1Negatif),2) +
-                pow(($mJarakMarket[$i] - $y2Negatif),2) +                
-                pow(($mHarga[$i] - $y3Negatif),2) +                
-                pow(($mKebersihan[$i] - $y4Negatif),2) +                
-                pow(($mKeamanan[$i] - $y5Negatif),2) +                
-                pow(($mFasilitas[$i] - $y6Negatif),2)
-            );
+        for ($i=0; $i < count($mNama); $i++) { 
+                $dNegatif = new Temp_D_Neg;
+                $dNegatif->nama = $mNama[$i];
+                $dNegatif->jarak_kampus = sqrt(pow(($mJarakKampus[$i] - $y1Negatif),2));
+                $dNegatif->jarak_market = sqrt(pow(($mJarakMarket[$i] - $y2Negatif),2));                
+                $dNegatif->harga = sqrt(pow(($mHarga[$i] - $y3Negatif),2));                
+                $dNegatif->kebersihan = sqrt(pow(($mKebersihan[$i] - $y4Negatif),2));                
+                $dNegatif->keamanan = sqrt(pow(($mKeamanan[$i] - $y5Negatif),2));                
+                $dNegatif->fasilitas = sqrt(pow(($mFasilitas[$i] - $y6Negatif),2));
+                $dNegatif->save();
         }
         
         return view('positif', [
-            // 'pJarakKampus' => $y1Positif,
-            // 'pJarakMarket' => $y2Positif,
-            // 'pHarga' => $y3Positif,
-            // 'pKebersihan' => $y4Positif,
-            // 'pKeamanan' => $y5Positif,
-            // 'pFasilitas' => $y6Positif,
-            // 'nJarakKampus' => $y1Negatif,
-            // 'nJarakMarket' => $y2Negatif,
-            // 'nHarga' => $y3Negatif,
-            // 'nKebersihan' => $y4Negatif,
-            // 'nKeamanan' => $y5Negatif,
-            // 'nFasilitas' => $y6Negatif,
             'dPositif' => $dPositif,
             'dNegatif' => $dNegatif
         ]);
