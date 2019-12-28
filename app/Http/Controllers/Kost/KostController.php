@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Kost;
 use App\Http\Controllers\Controller;
 use App\Kost;
 use Illuminate\Http\Request;
+use App\Kost;
 
 class KostController extends Controller
 {
@@ -66,5 +67,23 @@ class KostController extends Controller
             'mKE' => $mKeamanan,
             'mF' => $mFasilitas
         ]);
+    }
+
+    public function SolusiIdealPositif()
+    {
+        $matrix = [
+            [1,2,3],
+            [1,2,3],
+            [1,2,3]
+        ];
+
+        $tmp = [];
+        for ($i=0; $i < $matrix; $i++) { 
+            $tmp[$i] = $matrix[1][$i];
+        }
+
+        $max = max($tmp);
+
+        return view('test', ['max' => $max]);
     }
 }
