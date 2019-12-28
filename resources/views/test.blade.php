@@ -8,5 +8,6 @@
 </head>
 <body>
     hihihihi
+    {{$matrix[0]}}
 </body>
 </html>

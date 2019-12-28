@@ -6,3 +6,4 @@ Route::get('/', function () {
 
 Route::get('kirim', 'Topsis\NormalisasiMatrix@send')->name('kirim');
 Route::get('/test', 'Topsis\NormalisasiMatrix@do');
+Route::get('pref', 'Topsis\NilaiPreferensi@do');
