@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Kost;
+namespace App\Http\Controllers\Topsis;
 
 use App\Http\Controllers\Controller;
-use App\Kost;
 use Illuminate\Http\Request;
+use App\Kost;
 
-class KostController extends Controller
+class NormalisasiMatrix extends Controller
 {
     public function NormalisasiMatrix()
     {
@@ -29,7 +29,7 @@ class KostController extends Controller
             $sumKeamanan += $key->keamanan;
             $sumFasilitas += $key->fasilitas;
         }
-        
+
         $avgJarakKampus = $sumJarakKampus / $loop;
         $avgJarakMarket = $sumJarakMarket / $loop;
         $avgHarga = $sumHarga / $loop;
@@ -54,7 +54,7 @@ class KostController extends Controller
             $mFasilitas[$loop] = $key->fasilitas / $avgJarakKampus;
             $loop += 1;
         }
-        
+
         return view('test', [
             'matrix' => $matrix,
             'sum' => $sumJarakKampus,

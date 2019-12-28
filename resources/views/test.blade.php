@@ -8,5 +8,21 @@
 </head>
 <body>
     {{$matrix}}
+    <br><br><br>
+    {{$sum}}
+    <br><br><br>
+    {{$avg}}
+    <br><br><br>
+    {{var_dump($mJ)}}
+    <br><br><br>
+    {{var_dump($mJM)}}
+    <br><br><br>
+    {{var_dump($mH)}}
+    <br><br><br>
+    {{var_dump($mK)}}
+    <br><br><br>
+    {{var_dump($mKE)}}
+    <br><br><br>
+    {{var_dump($mF)}}
 </body>
 </html>
