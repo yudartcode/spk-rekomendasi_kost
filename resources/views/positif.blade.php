@@ -7,6 +7,27 @@
     <title>Document</title>
 </head>
 <body>
-    {{$max}}
+
+    {{-- ideal positif = [
+    {{$pJarakKampus}}
+    {{$pJarakMarket}}
+    {{$pHarga}}
+    {{$pKebersihan}}
+    {{$pKeamanan}}
+    {{$pFasilitas}}
+    ]
+    <hr>
+    ideal negatif = [
+    {{$nJarakKampus}}
+    {{$nJarakMarket}}
+    {{$nHarga}}
+    {{$nKebersihan}}
+    {{$nKeamanan}}
+    {{$nFasilitas}}
+    ] --}}
+    <hr>
+    {{var_dump($dPositif)}}
+    <hr>
+    {{var_dump($dNegatif)}}
 </body>
 </html>
