@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Topsis;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Kost;
+use App\Temp_Bobot;
+use App\Temp_Normalisasi;
 
 class NormalisasiMatrix extends Controller
-{
-    public function NormalisasiMatrix()
+{   
+    public function do()
     {
+        $bobot = Temp_Bobot::first();
         $matrix = Kost::all();
 
-        $loop = 0;
         $sumJarakKampus = 0;
         $sumJarakMarket = 0;
         $sumHarga = 0;
@@ -21,50 +23,26 @@ class NormalisasiMatrix extends Controller
         $sumFasilitas = 0;
 
         foreach ($matrix as $key) {
-            $loop += 1;
-            $sumJarakKampus += $key->jarak_kampus;
-            $sumJarakMarket += $key->jarak_marker;
-            $sumHarga += $key->harga;
-            $sumKebersihan += $key->kebersihan;
-            $sumKeamanan += $key->keamanan;
-            $sumFasilitas += $key->fasilitas;
+            $sumJarakKampus += pow($key->jarak_kampus, 2);
+            $sumJarakMarket += pow($key->jarak_market, 2);
+            $sumHarga += pow($key->harga, 2);
+            $sumKebersihan += pow($key->kebersihan, 2);
+            $sumKeamanan += pow($key->keamanan, 2);
+            $sumFasilitas += pow($key->fasilitas, 2);
         }
 
-        $avgJarakKampus = $sumJarakKampus / $loop;
-        $avgJarakMarket = $sumJarakMarket / $loop;
-        $avgHarga = $sumHarga / $loop;
-        $avgKebersihan = $sumKebersihan / $loop;
-        $avgKeamanan = $sumKeamanan / $loop;
-        $avgFasilitas = $sumFasilitas / $loop;
-
-        $mJarakKampus = [];
-        $mJarakMarket = [];
-        $mHarga = [];
-        $mKebersihan = [];
-        $mKeamanan = [];
-        $mFasilitas = [];
-
-        $loop = 0;
         foreach ($matrix as $key) {
-            $mJarakKampus[$loop] = $key->jarak_kampus / $avgJarakKampus;
-            $mJarakMarket[$loop] = $key->jarak_market / $avgJarakKampus;
-            $mHarga[$loop] = $key->harga / $avgJarakKampus;
-            $mKebersihan[$loop] = $key->kebersihan / $avgJarakKampus;
-            $mKeamanan[$loop] = $key->keamanan / $avgJarakKampus;
-            $mFasilitas[$loop] = $key->fasilitas / $avgJarakKampus;
-            $loop += 1;
+            $temp = new Temp_Normalisasi;
+            $temp->nama = $key->nama;
+            $temp->jarak_kampus = $key->jarak_kampus / sqrt($sumJarakKampus) * $bobot->jarak_kampus;
+            $temp->jarak_market = $key->jarak_market / sqrt($sumJarakMarket) * $bobot->jarak_market;
+            $temp->harga = $key->harga / sqrt($sumHarga) * $bobot->harga;
+            $temp->kebersihan = $key->kebersihan / sqrt( $sumKebersihan) * $bobot->kebersihan;
+            $temp->keamanan = $key->keamanan / sqrt($sumKeamanan) * $bobot->keamanan;
+            $temp->fasilitas = $key->fasilitas / sqrt($sumFasilitas) * $bobot->fasilitas;
+            $temp->save();
         }
-
-        return view('test', [
-            'matrix' => $matrix,
-            'sum' => $sumJarakKampus,
-            'avg' => $avgJarakKampus,
-            'mJ' => $mJarakKampus,
-            'mJM' => $mJarakMarket,
-            'mH' => $mHarga,
-            'mK' => $mKebersihan,
-            'mKE' => $mKeamanan,
-            'mF' => $mFasilitas
-        ]);
+        
+        return view('test');
     }
 }

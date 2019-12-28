@@ -4,4 +4,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', 'Kost\KostController@NormalisasiMatrix');
+Route::get('kirim', 'Topsis\NormalisasiMatrix@send')->name('kirim');
+Route::get('/test', 'Topsis\NormalisasiMatrix@do');
