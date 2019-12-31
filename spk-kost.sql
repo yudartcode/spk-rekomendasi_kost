@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2019 at 05:49 AM
+-- Generation Time: Dec 31, 2019 at 06:59 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -80,11 +80,12 @@ INSERT INTO `temp_bobot` (`id`, `kriteria`, `jarak_kampus`, `jarak_market`, `har
 -- --------------------------------------------------------
 
 --
--- Table structure for table `temp_bobot_normal`
+-- Table structure for table `temp_d_neg`
 --
 
-CREATE TABLE `temp_bobot_normal` (
+CREATE TABLE `temp_d_neg` (
   `id` int(11) NOT NULL,
+  `nama` varchar(191) NOT NULL,
   `jarak_kampus` double NOT NULL,
   `jarak_market` double NOT NULL,
   `harga` double NOT NULL,
@@ -94,23 +95,13 @@ CREATE TABLE `temp_bobot_normal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `temp_bobot_normal`
+-- Dumping data for table `temp_d_neg`
 --
 
-INSERT INTO `temp_bobot_normal` (`id`, `jarak_kampus`, `jarak_market`, `harga`, `kebersihan`, `keamanan`, `fasilitas`) VALUES
-(2, -0.21053, -0.10526, -0.26316, 0.15789, 0.15789, 0.10526);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `temp_d_neg`
---
-
-CREATE TABLE `temp_d_neg` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(191) NOT NULL,
-  `dNegatif` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `temp_d_neg` (`id`, `nama`, `jarak_kampus`, `jarak_market`, `harga`, `kebersihan`, `keamanan`, `fasilitas`) VALUES
+(10, 'agung', 0, 0, 0, 1.76504, 0.72761, 0.56568),
+(11, 'yuda', 1.95413, 1.05212, 2.10373, 0, 0, 0),
+(12, 'dodo', 0.39082, 0.26303, 1.32457, 1.1767, 0, 0.28284);
 
 -- --------------------------------------------------------
 
@@ -121,8 +112,22 @@ CREATE TABLE `temp_d_neg` (
 CREATE TABLE `temp_d_pos` (
   `id` int(11) NOT NULL,
   `nama` varchar(191) NOT NULL,
-  `dPositif` double NOT NULL
+  `jarak_kampus` double NOT NULL,
+  `jarak_market` double NOT NULL,
+  `harga` double NOT NULL,
+  `kebersihan` double NOT NULL,
+  `keamanan` double NOT NULL,
+  `fasilitas` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `temp_d_pos`
+--
+
+INSERT INTO `temp_d_pos` (`id`, `nama`, `jarak_kampus`, `jarak_market`, `harga`, `kebersihan`, `keamanan`, `fasilitas`) VALUES
+(10, 'agung', 1.95413, 1.05212, 2.10373, 0, 0, 0),
+(11, 'yuda', 0, 0, 0, 1.76504, 0.72761, 0.56568),
+(12, 'dodo', 1.56331, 0.78909, 0.77916, 0.58834, 0.72761, 0.28284);
 
 -- --------------------------------------------------------
 
@@ -181,20 +186,22 @@ CREATE TABLE `temp_normalisasi_kriteria` (
   `harga` double NOT NULL,
   `kebersihan` double NOT NULL,
   `keamanan` double NOT NULL,
-  `fasilitas` double NOT NULL
+  `fasilitas` double NOT NULL,
+  `avg` double DEFAULT NULL,
+  `matrix_aw` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `temp_normalisasi_kriteria`
 --
 
-INSERT INTO `temp_normalisasi_kriteria` (`id`, `kriteria`, `jarak_kampus`, `jarak_market`, `harga`, `kebersihan`, `keamanan`, `fasilitas`) VALUES
-(1, 'jarak_kampus', 0.44248, 0.35714, 0.35714, 0.35714, 0.50083, 0.50083),
-(2, 'jarak_market', 0.0885, 0.07143, 0.07143, 0.07143, 0.05509, 0.05509),
-(3, 'harga', 0.0885, 0.07143, 0.07143, 0.07143, 0.05509, 0.05509),
-(4, 'kebersihan', 0.0885, 0.07143, 0.07143, 0.07143, 0.05509, 0.05509),
-(5, 'keamanan', 0.14602, 0.21429, 0.21429, 0.21429, 0.16694, 0.16694),
-(6, 'fasilitas', 0.14602, 0.21429, 0.21429, 0.21429, 0.16694, 0.16694);
+INSERT INTO `temp_normalisasi_kriteria` (`id`, `kriteria`, `jarak_kampus`, `jarak_market`, `harga`, `kebersihan`, `keamanan`, `fasilitas`, `avg`, `matrix_aw`) VALUES
+(13, 'jarak_kampus', 0.44248, 0.35714, 0.35714, 0.35714, 0.50083, 0.50083, 0.41926, 2.57449),
+(14, 'jarak_market', 0.0885, 0.07143, 0.07143, 0.07143, 0.05509, 0.05509, 0.06883, 0.4138478),
+(15, 'harga', 0.0885, 0.07143, 0.07143, 0.07143, 0.05509, 0.05509, 0.06883, 0.4138478),
+(16, 'kebersihan', 0.0885, 0.07143, 0.07143, 0.07143, 0.05509, 0.05509, 0.06883, 0.4138478),
+(17, 'keamanan', 0.14602, 0.21429, 0.21429, 0.21429, 0.16694, 0.16694, 0.18713, 1.1320858),
+(18, 'fasilitas', 0.14602, 0.21429, 0.21429, 0.21429, 0.16694, 0.16694, 0.18713, 1.1320858);
 
 --
 -- Indexes for dumped tables
@@ -210,12 +217,6 @@ ALTER TABLE `kost`
 -- Indexes for table `temp_bobot`
 --
 ALTER TABLE `temp_bobot`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `temp_bobot_normal`
---
-ALTER TABLE `temp_bobot_normal`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -265,12 +266,6 @@ ALTER TABLE `temp_bobot`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `temp_bobot_normal`
---
-ALTER TABLE `temp_bobot_normal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `temp_d_neg`
 --
 ALTER TABLE `temp_d_neg`
@@ -298,7 +293,7 @@ ALTER TABLE `temp_normalisasi`
 -- AUTO_INCREMENT for table `temp_normalisasi_kriteria`
 --
 ALTER TABLE `temp_normalisasi_kriteria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
