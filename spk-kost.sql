@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2019 at 06:59 AM
+-- Generation Time: Dec 31, 2019 at 07:45 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -86,22 +86,17 @@ INSERT INTO `temp_bobot` (`id`, `kriteria`, `jarak_kampus`, `jarak_market`, `har
 CREATE TABLE `temp_d_neg` (
   `id` int(11) NOT NULL,
   `nama` varchar(191) NOT NULL,
-  `jarak_kampus` double NOT NULL,
-  `jarak_market` double NOT NULL,
-  `harga` double NOT NULL,
-  `kebersihan` double NOT NULL,
-  `keamanan` double NOT NULL,
-  `fasilitas` double NOT NULL
+  `dNegatif` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `temp_d_neg`
 --
 
-INSERT INTO `temp_d_neg` (`id`, `nama`, `jarak_kampus`, `jarak_market`, `harga`, `kebersihan`, `keamanan`, `fasilitas`) VALUES
-(10, 'agung', 0, 0, 0, 1.76504, 0.72761, 0.56568),
-(11, 'yuda', 1.95413, 1.05212, 2.10373, 0, 0, 0),
-(12, 'dodo', 0.39082, 0.26303, 1.32457, 1.1767, 0, 0.28284);
+INSERT INTO `temp_d_neg` (`id`, `nama`, `dNegatif`) VALUES
+(13, 'agung', 3.1469435490011577),
+(14, 'yuda', 3.4033541637331837),
+(15, 'dodo', 2.4945135726028833);
 
 -- --------------------------------------------------------
 
@@ -112,22 +107,17 @@ INSERT INTO `temp_d_neg` (`id`, `nama`, `jarak_kampus`, `jarak_market`, `harga`,
 CREATE TABLE `temp_d_pos` (
   `id` int(11) NOT NULL,
   `nama` varchar(191) NOT NULL,
-  `jarak_kampus` double NOT NULL,
-  `jarak_market` double NOT NULL,
-  `harga` double NOT NULL,
-  `kebersihan` double NOT NULL,
-  `keamanan` double NOT NULL,
-  `fasilitas` double NOT NULL
+  `dPositif` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `temp_d_pos`
 --
 
-INSERT INTO `temp_d_pos` (`id`, `nama`, `jarak_kampus`, `jarak_market`, `harga`, `kebersihan`, `keamanan`, `fasilitas`) VALUES
-(10, 'agung', 1.95413, 1.05212, 2.10373, 0, 0, 0),
-(11, 'yuda', 0, 0, 0, 1.76504, 0.72761, 0.56568),
-(12, 'dodo', 1.56331, 0.78909, 0.77916, 0.58834, 0.72761, 0.28284);
+INSERT INTO `temp_d_pos` (`id`, `nama`, `dPositif`) VALUES
+(13, 'agung', 3.4033541637331837),
+(14, 'yuda', 3.1469435490011577),
+(15, 'dodo', 2.51443925607679);
 
 -- --------------------------------------------------------
 
@@ -138,22 +128,17 @@ INSERT INTO `temp_d_pos` (`id`, `nama`, `jarak_kampus`, `jarak_market`, `harga`,
 CREATE TABLE `temp_nilai_pref` (
   `id` int(11) NOT NULL,
   `nama` varchar(191) NOT NULL,
-  `jarak_kampus` double NOT NULL,
-  `jarak_market` double NOT NULL,
-  `harga` double NOT NULL,
-  `kebersihan` double NOT NULL,
-  `keamanan` double NOT NULL,
-  `fasilitas` double NOT NULL
+  `val` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `temp_nilai_pref`
 --
 
-INSERT INTO `temp_nilai_pref` (`id`, `nama`, `jarak_kampus`, `jarak_market`, `harga`, `kebersihan`, `keamanan`, `fasilitas`) VALUES
-(10, 'agung', 0, 0, 0, 1, 1, 1),
-(11, 'yuda', 1, 1, 1, 0, 0, 0),
-(12, 'dodo', 0.2, 0.25, 0.62963, 0.66667, 0, 0.5);
+INSERT INTO `temp_nilai_pref` (`id`, `nama`, `val`) VALUES
+(13, 'agung', 0.48043),
+(14, 'yuda', 0.51957),
+(15, 'dodo', 0.49801);
 
 -- --------------------------------------------------------
 
@@ -171,6 +156,15 @@ CREATE TABLE `temp_normalisasi` (
   `keamanan` double NOT NULL,
   `fasilitas` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `temp_normalisasi`
+--
+
+INSERT INTO `temp_normalisasi` (`id`, `nama`, `jarak_kampus`, `jarak_market`, `harga`, `kebersihan`, `keamanan`, `fasilitas`) VALUES
+(49, 'agung', 0.7328, 3.75757, 3.8958, 3.92232, 2.18282, 2.12132),
+(50, 'yuda', 0.24427, 1.12727, 1.79207, 0.98058, 1.45521, 1.27279),
+(51, 'dodo', 0.63509, 3.09999, 2.57123, 2.94174, 1.45521, 1.69706);
 
 -- --------------------------------------------------------
 
@@ -196,12 +190,12 @@ CREATE TABLE `temp_normalisasi_kriteria` (
 --
 
 INSERT INTO `temp_normalisasi_kriteria` (`id`, `kriteria`, `jarak_kampus`, `jarak_market`, `harga`, `kebersihan`, `keamanan`, `fasilitas`, `avg`, `matrix_aw`) VALUES
-(13, 'jarak_kampus', 0.44248, 0.35714, 0.35714, 0.35714, 0.50083, 0.50083, 0.41926, 2.57449),
-(14, 'jarak_market', 0.0885, 0.07143, 0.07143, 0.07143, 0.05509, 0.05509, 0.06883, 0.4138478),
-(15, 'harga', 0.0885, 0.07143, 0.07143, 0.07143, 0.05509, 0.05509, 0.06883, 0.4138478),
-(16, 'kebersihan', 0.0885, 0.07143, 0.07143, 0.07143, 0.05509, 0.05509, 0.06883, 0.4138478),
-(17, 'keamanan', 0.14602, 0.21429, 0.21429, 0.21429, 0.16694, 0.16694, 0.18713, 1.1320858),
-(18, 'fasilitas', 0.14602, 0.21429, 0.21429, 0.21429, 0.16694, 0.16694, 0.18713, 1.1320858);
+(19, 'jarak_kampus', 0.44248, 0.35714, 0.35714, 0.35714, 0.50083, 0.50083, 0.41926, 2.57449),
+(20, 'jarak_market', 0.0885, 0.07143, 0.07143, 0.07143, 0.05509, 0.05509, 0.06883, 0.4138478),
+(21, 'harga', 0.0885, 0.07143, 0.07143, 0.07143, 0.05509, 0.05509, 0.06883, 0.4138478),
+(22, 'kebersihan', 0.0885, 0.07143, 0.07143, 0.07143, 0.05509, 0.05509, 0.06883, 0.4138478),
+(23, 'keamanan', 0.14602, 0.21429, 0.21429, 0.21429, 0.16694, 0.16694, 0.18713, 1.1320858),
+(24, 'fasilitas', 0.14602, 0.21429, 0.21429, 0.21429, 0.16694, 0.16694, 0.18713, 1.1320858);
 
 --
 -- Indexes for dumped tables
@@ -269,31 +263,31 @@ ALTER TABLE `temp_bobot`
 -- AUTO_INCREMENT for table `temp_d_neg`
 --
 ALTER TABLE `temp_d_neg`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `temp_d_pos`
 --
 ALTER TABLE `temp_d_pos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `temp_nilai_pref`
 --
 ALTER TABLE `temp_nilai_pref`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `temp_normalisasi`
 --
 ALTER TABLE `temp_normalisasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `temp_normalisasi_kriteria`
 --
 ALTER TABLE `temp_normalisasi_kriteria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
