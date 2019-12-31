@@ -33,7 +33,7 @@ class SolusiIdeal extends Controller
             $i++;
         }
 
-        // alternatif ideal positif
+        // matrix ideal positif
         $y1Positif = min($mJarakKampus);
         $y2Positif = min($mJarakMarket);
         $y3Positif = min($mHarga);
@@ -41,7 +41,7 @@ class SolusiIdeal extends Controller
         $y5Positif = max($mKeamanan);
         $y6Positif = max($mFasilitas);
         
-        // alternatif ideal negatif
+        // matrix ideal negatif
         $y1Negatif = max($mJarakKampus);
         $y2Negatif = max($mJarakMarket);
         $y3Negatif = max($mHarga);
@@ -53,24 +53,24 @@ class SolusiIdeal extends Controller
         for ($i=0; $i < count($mNama); $i++) { 
             $dPositif = new Temp_D_Pos;
             $dPositif->nama = $mNama[$i];
-            $dPositif->jarak_kampus = sqrt(pow(($y1Positif - $mJarakKampus[$i]),2));
-            $dPositif->jarak_market = sqrt(pow(($y2Positif - $mJarakMarket[$i]),2));
-            $dPositif->harga = sqrt(pow(($y3Positif - $mHarga[$i]),2));
-            $dPositif->kebersihan = sqrt(pow(($y4Positif - $mKebersihan[$i]),2));
-            $dPositif->keamanan = sqrt(pow(($y5Positif - $mKeamanan[$i]),2));
-            $dPositif->fasilitas = sqrt(pow(($y6Positif - $mFasilitas[$i]),2));
+            $dPositif->jarak_kampus = round(sqrt(pow(($y1Positif - $mJarakKampus[$i]),2)), 5);
+            $dPositif->jarak_market = round(sqrt(pow(($y2Positif - $mJarakMarket[$i]),2)), 5);
+            $dPositif->harga = round(sqrt(pow(($y3Positif - $mHarga[$i]),2)), 5);
+            $dPositif->kebersihan = round(sqrt(pow(($y4Positif - $mKebersihan[$i]),2)), 5);
+            $dPositif->keamanan = round(sqrt(pow(($y5Positif - $mKeamanan[$i]),2)), 5);
+            $dPositif->fasilitas = round(sqrt(pow(($y6Positif - $mFasilitas[$i]),2)), 5);
             $dPositif->save();
         }
         //perhitungan ideal negatif
         for ($i=0; $i < count($mNama); $i++) { 
                 $dNegatif = new Temp_D_Neg;
                 $dNegatif->nama = $mNama[$i];
-                $dNegatif->jarak_kampus = sqrt(pow(($mJarakKampus[$i] - $y1Negatif),2));
-                $dNegatif->jarak_market = sqrt(pow(($mJarakMarket[$i] - $y2Negatif),2));                
-                $dNegatif->harga = sqrt(pow(($mHarga[$i] - $y3Negatif),2));                
-                $dNegatif->kebersihan = sqrt(pow(($mKebersihan[$i] - $y4Negatif),2));                
-                $dNegatif->keamanan = sqrt(pow(($mKeamanan[$i] - $y5Negatif),2));                
-                $dNegatif->fasilitas = sqrt(pow(($mFasilitas[$i] - $y6Negatif),2));
+                $dNegatif->jarak_kampus = round(sqrt(pow(($mJarakKampus[$i] - $y1Negatif),2)), 5);
+                $dNegatif->jarak_market = round(sqrt(pow(($mJarakMarket[$i] - $y2Negatif),2)), 5);                
+                $dNegatif->harga = round(sqrt(pow(($mHarga[$i] - $y3Negatif),2)), 5);                
+                $dNegatif->kebersihan = round(sqrt(pow(($mKebersihan[$i] - $y4Negatif),2)), 5);                
+                $dNegatif->keamanan = round(sqrt(pow(($mKeamanan[$i] - $y5Negatif),2)), 5);                
+                $dNegatif->fasilitas = round(sqrt(pow(($mFasilitas[$i] - $y6Negatif),2)), 5);
                 $dNegatif->save();
         }
         

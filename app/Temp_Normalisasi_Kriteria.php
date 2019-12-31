@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Temp_VektorS extends Model
+class Temp_Normalisasi_Kriteria extends Model
 {
-    protected $table = 'temp_vektors';
+    protected $table = 'temp_normalisasi_kriteria';
     public $timestamps = false;
-}
 }

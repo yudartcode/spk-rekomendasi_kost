@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class VektorV extends Model
+class Temp_Bobot_Normal extends Model
 {
-    protected $table = 'temp_vektor_v';
+    protected $table = 'temp_bobot_normal';
     public $timestamps = false;
 }
