@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2019 at 05:11 AM
+-- Generation Time: Dec 31, 2019 at 05:49 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -109,22 +109,8 @@ INSERT INTO `temp_bobot_normal` (`id`, `jarak_kampus`, `jarak_market`, `harga`, 
 CREATE TABLE `temp_d_neg` (
   `id` int(11) NOT NULL,
   `nama` varchar(191) NOT NULL,
-  `jarak_kampus` double NOT NULL,
-  `jarak_market` double NOT NULL,
-  `harga` double NOT NULL,
-  `kebersihan` double NOT NULL,
-  `keamanan` double NOT NULL,
-  `fasilitas` double NOT NULL
+  `dNegatif` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `temp_d_neg`
---
-
-INSERT INTO `temp_d_neg` (`id`, `nama`, `jarak_kampus`, `jarak_market`, `harga`, `kebersihan`, `keamanan`, `fasilitas`) VALUES
-(10, 'agung', 0, 0, 0, 1.76504, 0.72761, 0.56568),
-(11, 'yuda', 1.95413, 1.05212, 2.10373, 0, 0, 0),
-(12, 'dodo', 0.39082, 0.26303, 1.32457, 1.1767, 0, 0.28284);
 
 -- --------------------------------------------------------
 
@@ -135,22 +121,8 @@ INSERT INTO `temp_d_neg` (`id`, `nama`, `jarak_kampus`, `jarak_market`, `harga`,
 CREATE TABLE `temp_d_pos` (
   `id` int(11) NOT NULL,
   `nama` varchar(191) NOT NULL,
-  `jarak_kampus` double NOT NULL,
-  `jarak_market` double NOT NULL,
-  `harga` double NOT NULL,
-  `kebersihan` double NOT NULL,
-  `keamanan` double NOT NULL,
-  `fasilitas` double NOT NULL
+  `dPositif` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `temp_d_pos`
---
-
-INSERT INTO `temp_d_pos` (`id`, `nama`, `jarak_kampus`, `jarak_market`, `harga`, `kebersihan`, `keamanan`, `fasilitas`) VALUES
-(10, 'agung', 1.95413, 1.05212, 2.10373, 0, 0, 0),
-(11, 'yuda', 0, 0, 0, 1.76504, 0.72761, 0.56568),
-(12, 'dodo', 1.56331, 0.78909, 0.77916, 0.58834, 0.72761, 0.28284);
 
 -- --------------------------------------------------------
 

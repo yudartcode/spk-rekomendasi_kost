@@ -53,30 +53,34 @@ class SolusiIdeal extends Controller
         for ($i=0; $i < count($mNama); $i++) { 
             $dPositif = new Temp_D_Pos;
             $dPositif->nama = $mNama[$i];
-            $dPositif->jarak_kampus = round(sqrt(pow(($y1Positif - $mJarakKampus[$i]),2)), 5);
-            $dPositif->jarak_market = round(sqrt(pow(($y2Positif - $mJarakMarket[$i]),2)), 5);
-            $dPositif->harga = round(sqrt(pow(($y3Positif - $mHarga[$i]),2)), 5);
-            $dPositif->kebersihan = round(sqrt(pow(($y4Positif - $mKebersihan[$i]),2)), 5);
-            $dPositif->keamanan = round(sqrt(pow(($y5Positif - $mKeamanan[$i]),2)), 5);
-            $dPositif->fasilitas = round(sqrt(pow(($y6Positif - $mFasilitas[$i]),2)), 5);
+            $dPositif->dPositif = sqrt(
+                pow(($y1Positif-$mJarakKampus[$i]),2) + 
+                pow(($y2Positif-$mJarakMarket[$i]),2) +
+                pow(($y3Positif-$mHarga[$i]),2) +
+                pow(($y4Positif-$mKebersihan[$i]),2) +
+                pow(($y5Positif-$mKeamanan[$i]),2) +
+                pow(($y6Positif-$mFasilitas[$i]),2)
+            );
             $dPositif->save();
         }
         //perhitungan ideal negatif
         for ($i=0; $i < count($mNama); $i++) { 
                 $dNegatif = new Temp_D_Neg;
                 $dNegatif->nama = $mNama[$i];
-                $dNegatif->jarak_kampus = round(sqrt(pow(($mJarakKampus[$i] - $y1Negatif),2)), 5);
-                $dNegatif->jarak_market = round(sqrt(pow(($mJarakMarket[$i] - $y2Negatif),2)), 5);                
-                $dNegatif->harga = round(sqrt(pow(($mHarga[$i] - $y3Negatif),2)), 5);                
-                $dNegatif->kebersihan = round(sqrt(pow(($mKebersihan[$i] - $y4Negatif),2)), 5);                
-                $dNegatif->keamanan = round(sqrt(pow(($mKeamanan[$i] - $y5Negatif),2)), 5);                
-                $dNegatif->fasilitas = round(sqrt(pow(($mFasilitas[$i] - $y6Negatif),2)), 5);
+                $dNegatif->dNegatif = sqrt(
+                    pow(($mJarakKampus[$i]-$y1Negatif),2) +
+                    pow(($mJarakMarket[$i]-$y2Negatif),2) +
+                    pow(($mHarga[$i]-$y3Negatif),2) +
+                    pow(($mKebersihan[$i]-$y4Negatif),2) +
+                    pow(($mKeamanan[$i]-$y5Negatif),2) +
+                    pow(($mFasilitas[$i]-$y6Negatif),2)
+                );
                 $dNegatif->save();
         }
         
-        return view('positif', [
-            'dPositif' => $dPositif,
-            'dNegatif' => $dNegatif
-        ]);
+        // return view('positif', [
+        //     'dPositif' => $dPositif,
+        //     'dNegatif' => $dNegatif
+        // ]);
     }
 }
