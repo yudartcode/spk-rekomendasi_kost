@@ -32,7 +32,7 @@ class NormalisasiKriteria extends Controller
         $kriteria = ['jarak_kampus', 'jarak_market', 'harga', 'kebersihan', 'keamanan', 'fasilitas'];
        for ($i=0; $i < 6; $i++) { 
             $temp = new Temp_Normalisasi_Kriteria;
-            $temp->nama = $kriteria[$i]->nama;
+            $temp->kriteria = $kriteria[$i];
             $temp->jarak_kampus = round(($matrix[$i]->jarak_kampus / $sumJarakKampus), 5);
             $temp->jarak_market = round(($matrix[$i]->jarak_market / $sumJarakMarket), 5);
             $temp->harga = round(($matrix[$i]->harga / $sumHarga), 5);
