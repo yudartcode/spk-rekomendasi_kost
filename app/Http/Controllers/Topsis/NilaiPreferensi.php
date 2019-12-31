@@ -27,6 +27,17 @@ class NilaiPreferensi extends Controller
             $pref->save();
         }
 
+        $pref = Temp_Nilai_Pref::all();
+        foreach ($pref as $key) {
+            $key->jarak_kampus = round($key->jarak_kampus, 5);
+            $key->jarak_market = round($key->jarak_market, 5);
+            $key->harga = round($key->harga, 5);
+            $key->kebersihan = round($key->kebersihan, 5);
+            $key->keamanan = round($key->keamanan, 5);
+            $key->fasilitas = round($key->fasilitas, 5);
+            $key->save();
+        }
+
         return view('test');
     }
 }

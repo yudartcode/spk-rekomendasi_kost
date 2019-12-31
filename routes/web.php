@@ -9,3 +9,5 @@ Route::get('kirim', 'Topsis\NormalisasiMatrix@send')->name('kirim');
 Route::get('/normal', 'Topsis\NormalisasiMatrix@do');
 Route::get('/ideal', 'Topsis\SolusiIdeal@solusiIdeal');
 Route::get('/pref', 'Topsis\NilaiPreferensi@do');
+
+Route::get('/normal-ahp', 'Ahp\NormalisasiKriteria@do');
