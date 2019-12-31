@@ -14,5 +14,13 @@
     {{-- {{$val}} --}}
     <br><br><br>
     {{-- {{$stts}} --}}
+    <br>
+    t = {{$t}}
+    <br>
+    ci = {{$ci}}
+    <br>
+    a = {{$A}}
+    <br>
+    {{$kons}}
 </body>
 </html>

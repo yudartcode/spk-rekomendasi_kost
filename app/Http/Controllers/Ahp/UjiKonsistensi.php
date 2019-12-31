@@ -45,6 +45,21 @@ class UjiKonsistensi extends Controller
             $tempW[$i]->save();
         }
 
-        return view('test', ['val' => $final]);
+        $t = 0;
+        foreach ($tempW as $key) {
+            $t += ($key->matrix_aw / $key->avg);
+        }
+        $t /= 6;
+        $t = round($t,5);
+
+        $ci = round(($t - 6)/(6-1),5);
+        $A = round($ci / 1.24, 5);
+
+        $kons = "";
+        if ($A <= 0.1) {
+            $kons = "Konsisten";
+        }
+
+        return view('test', ['val' => $final,'t' => $t, 'ci' => $ci, 'A' => $A, 'kons' => $kons]);
     }
 }
