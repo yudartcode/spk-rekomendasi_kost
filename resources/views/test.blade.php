@@ -9,7 +9,7 @@
 <body>
     hihihihi
     {{-- {{$matrix[0]}} --}}
-    {{-- {{var_dump($val)}} --}}
+    {{var_dump($val)}}
     <br><br><br>
     {{-- {{$val}} --}}
     <br><br><br>
