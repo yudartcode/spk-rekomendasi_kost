@@ -12,7 +12,6 @@ class NormalisasiBobot extends Controller
     public function do()
     {
         $bobot = Temp_Bobot::all();
-        $bobotNormal = [];
         foreach ($bobot as $k) {
             $b = new BobotNormal;
             $b->nama = $k->nama;
