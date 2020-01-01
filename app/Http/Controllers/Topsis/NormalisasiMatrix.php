@@ -43,6 +43,6 @@ class NormalisasiMatrix extends Controller
             $temp->save();
         }
         
-        return view('test', ['matrix'=>$matrix]);
+        return view('test');
     }
 }

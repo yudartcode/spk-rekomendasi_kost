@@ -4,11 +4,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('kirim', 'Topsis\NormalisasiMatrix@send')->name('kirim');
+Route::get('/normalisasi-kriteria-ahp', 'Ahp\NormalisasiKriteria@do');
+Route::get('/uji-konsistensi-ahp', 'Ahp\UjiKonsistensi@do');
 
-Route::get('/normal-ahp', 'Ahp\NormalisasiKriteria@do');
-Route::get('/UK', 'Ahp\UjiKonsistensi@do');
-
-Route::get('/normal', 'Topsis\NormalisasiMatrix@do');
-Route::get('/ideal', 'Topsis\SolusiIdeal@solusiIdeal');
-Route::get('/pref', 'Topsis\NilaiPreferensi@do');
+Route::get('/normalisasi-alternatif-topsis', 'Topsis\NormalisasiMatrix@do');
+Route::get('/solusi-ideal-topsis', 'Topsis\SolusiIdeal@solusiIdeal');
+Route::get('/nilai-preferensi-topsis', 'Topsis\NilaiPreferensi@do');

@@ -50,6 +50,6 @@ class NormalisasiKriteria extends Controller
             $key->save();
         }
 
-        return view('test', ['matrix' => $matrix]);
+        return view('test');
     }
 }

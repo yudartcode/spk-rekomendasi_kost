@@ -78,9 +78,6 @@ class SolusiIdeal extends Controller
                 $dNegatif->save();
         }
         
-        // return view('positif', [
-        //     'dPositif' => $dPositif,
-        //     'dNegatif' => $dNegatif
-        // ]);
+        return view('test');
     }
 }

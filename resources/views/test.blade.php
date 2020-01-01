@@ -7,20 +7,6 @@
     <title>Test</title>
 </head>
 <body>
-    hihihihi
-    {{-- {{$matrix[0]}} --}}
-    {{var_dump($val)}}
-    <br><br><br>
-    {{-- {{$val}} --}}
-    <br><br><br>
-    {{-- {{$stts}} --}}
-    <br>
-    t = {{$t}}
-    <br>
-    ci = {{$ci}}
-    <br>
-    a = {{$A}}
-    <br>
-    {{$kons}}
+    <h1 style="color: green">SUCCESS</h1>
 </body>
 </html>

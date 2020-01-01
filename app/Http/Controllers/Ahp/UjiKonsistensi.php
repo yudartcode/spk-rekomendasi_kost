@@ -60,6 +60,6 @@ class UjiKonsistensi extends Controller
             $kons = "Konsisten";
         }
 
-        return view('test', ['val' => $final,'t' => $t, 'ci' => $ci, 'A' => $A, 'kons' => $kons]);
+        return view('test');
     }
 }
