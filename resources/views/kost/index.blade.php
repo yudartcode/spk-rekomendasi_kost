@@ -32,12 +32,11 @@ Daftar Kost
             @endforeach
         </tbody>
     </table>
-
-    <div class="row ">
-        <div class="col d-flex justify-content-center">
-            {{$kost->links()}}
-        </div>
+</div>
+<br>
+<div class="row ">
+    <div class="col d-flex justify-content-center">
+        {{$kost->links()}}
     </div>
 </div>
-
 @endsection

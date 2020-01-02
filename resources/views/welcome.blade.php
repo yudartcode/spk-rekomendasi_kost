@@ -1,8 +1,8 @@
 @extends('template')
 @section('content')
 <div class="jumbotron">
-    <h1 class="display-4">Welcome to </br>Kost Recommendation System</h1>
-    <p class="lead">This system can give you a recommendation Kost for students which lecture at Bumigora University</p>
+    <h1 class="display-4">Welcome to </br>Kost Recommendation System 0.1.40</h1>
+    <p class="lead">This system can give you a Kost recommendation for students which lecture at Bumigora University</p>
     <hr class="my-4">
     <p>We hope you helped using this system :)</p>
     <p>Created by :</p>

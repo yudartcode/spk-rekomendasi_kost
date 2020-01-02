@@ -9,7 +9,7 @@ class Rekomendasi extends Controller
 {
     public function doMagic()
     {
-        $result = Temp_Nilai_Pref::orderBy('val', 'DESC')->get();
+        $result = Temp_Nilai_Pref::orderBy('val', 'DESC')->take(5)->get();
 
         return view('rekomendasi.index', ['result' => $result]);
     }

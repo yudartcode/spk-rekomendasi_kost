@@ -38,18 +38,16 @@ class NormalisasiMatrix extends Controller
             $sumFasilitas += pow($key->fasilitas, 2);
         }
 
-        $i = 0;
         foreach ($matrix as $key) {
             $temp = new Temp_Normalisasi;
             $temp->nama = $key->nama;
-            $temp->jarak_kampus = (($key->jarak_kampus / sqrt($sumJarakKampus) * $bobot[$i]));
-            $temp->jarak_market = (($key->jarak_market / sqrt($sumJarakMarket) * $bobot[$i]));
-            $temp->harga = (($key->harga / sqrt($sumHarga) * $bobot[$i]));
-            $temp->kebersihan = (($key->kebersihan / sqrt( $sumKebersihan) * $bobot[$i]));
-            $temp->keamanan = (( $key->keamanan / sqrt($sumKeamanan) * $bobot[$i]));
-            $temp->fasilitas = (($key->fasilitas / sqrt($sumFasilitas) * $bobot[$i]));
+            $temp->jarak_kampus = (($key->jarak_kampus / sqrt($sumJarakKampus) * $bobot[0]));
+            $temp->jarak_market = (($key->jarak_market / sqrt($sumJarakMarket) * $bobot[1]));
+            $temp->harga = (($key->harga / sqrt($sumHarga) * $bobot[2]));
+            $temp->kebersihan = (($key->kebersihan / sqrt( $sumKebersihan) * $bobot[3]));
+            $temp->keamanan = (( $key->keamanan / sqrt($sumKeamanan) * $bobot[4]));
+            $temp->fasilitas = (($key->fasilitas / sqrt($sumFasilitas) * $bobot[5]));
             $temp->save();
-            $i++;
         }
         
         return redirect()->route('topsis.si');
