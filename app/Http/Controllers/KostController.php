@@ -9,9 +9,8 @@ class KostController extends Controller
 {
     public function index()
     {
-        $n = 1;
         $kost = Kost::paginate(15);
-        return view('kost.index', ['kost' => $kost, 'n' => $n]);
+        return view('kost.index', ['kost' => $kost]);
     }
 
     public function create()

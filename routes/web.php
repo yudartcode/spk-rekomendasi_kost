@@ -17,3 +17,7 @@ Route::get('/normalisasi-alternatif-topsis', 'Topsis\NormalisasiMatrix@do')->nam
 Route::get('/solusi-ideal-topsis', 'Topsis\SolusiIdeal@solusiIdeal')->name('topsis.si');
 Route::get('/nilai-preferensi-topsis', 'Topsis\NilaiPreferensi@do')->name('topsis.np');
 
+Route::get('/rekomendasi', 'Rekomendasi@doMagic')->name('rekomendasi');
+
+Route::get('/hitung-ulang', 'Rekomendasi@reCalc');
+Route::get('/clear-temp', 'ClearTemp@do')->name('clear.temp');

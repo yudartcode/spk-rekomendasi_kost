@@ -78,6 +78,6 @@ class SolusiIdeal extends Controller
             $dNegatif->save();
         }
 
-        return view('test');
+        return redirect()->route('topsis.np');
     }
 }

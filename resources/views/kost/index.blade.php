@@ -20,7 +20,7 @@ Daftar Kost
         <tbody>
             @foreach ($kost as $i)
             <tr>
-                <td scope="row">{{$n++}}</th>
+                <td scope="row">{{$loop->iteration}}</th>
                 <td>{{$i->nama}}</td>
                 <td>{{$i->jarak_kampus}} Km</td>
                 <td>{{$i->jarak_market}} Km</td>

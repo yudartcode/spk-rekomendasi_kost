@@ -50,6 +50,6 @@ class NormalisasiKriteria extends Controller
             $key->save();
         }
 
-        return view('test');
+        return redirect()->route('ahp.uk');
     }
 }

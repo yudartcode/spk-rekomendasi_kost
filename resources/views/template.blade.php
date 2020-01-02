@@ -21,7 +21,7 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="kost">Daftar Kost</a>
                     <a class="nav-item nav-link" href="bobot">Bobot</a>
-                    <a class="nav-item nav-link" href="#">Rekomendasi</a>
+                    <a class="nav-item nav-link" href="rekomendasi">Rekomendasi</a>
                 </div>
             </div>
         </div>

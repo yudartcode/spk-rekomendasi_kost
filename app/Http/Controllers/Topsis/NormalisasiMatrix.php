@@ -52,6 +52,6 @@ class NormalisasiMatrix extends Controller
             $i++;
         }
         
-        return view('test');
+        return redirect()->route('topsis.si');
     }
 }

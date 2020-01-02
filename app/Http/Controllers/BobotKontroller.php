@@ -39,7 +39,7 @@ class BobotKontroller extends Controller
             $bk->save();
         }
 
-        return redirect()->route('bobot');
+        return redirect()->route('ahp.nor');
     }
 
     public function show($id)

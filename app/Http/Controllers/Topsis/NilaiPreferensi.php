@@ -15,13 +15,13 @@ class NilaiPreferensi extends Controller
         $negatif = Temp_D_Neg::all();
         $positif = Temp_D_Pos::all();
 
-        for ($i=0; $i < count($negatif); $i++) { 
+        for ($i = 0; $i < count($negatif); $i++) {
             $pref = new Temp_Nilai_Pref;
             $pref->nama = $negatif[$i]->nama;
-            $pref->val = $negatif[$i]->dNegatif / ($negatif[$i]->dNegatif + $positif[$i]->dPositif);            
+            $pref->val = $negatif[$i]->dNegatif / ($negatif[$i]->dNegatif + $positif[$i]->dPositif);
             $pref->save();
         }
 
-        return view('test');
+        return redirect()->route('rekomendasi');
     }
 }

@@ -68,7 +68,7 @@ Matrix Kriteria Berpasangan
                 </tbody>
             </table>
             <div class="float-right">
-                <input type="submit" value="Simpan" class="btn btn-primary">
+                <input type="submit" value="Hitung" class="btn btn-primary">
             </div>
         </form>
     </div>

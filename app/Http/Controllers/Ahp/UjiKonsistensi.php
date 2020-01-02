@@ -45,21 +45,23 @@ class UjiKonsistensi extends Controller
             $tempW[$i]->save();
         }
 
-        $t = 0;
+        $lambda = 0;
         foreach ($tempW as $key) {
-            $t += ($key->matrix_aw / $key->avg);
+            $lambda += ($key->matrix_aw / $key->avg);
         }
-        $t /= 6;
-        $t = ($t);
+        $lambda /= 6;
 
-        $ci = (($t - 6)/(6-1));
-        $A = ($ci / 1.24);
+        $ci = (($lambda - 6) / (6 - 1));
+        $cr = ($ci / 1.24);
 
-        $kons = "";
-        if ($A <= 0.1) {
-            $kons = "Konsisten";
+        if ($cr <= 0.1) {
+            return redirect()->route('topsis.nor');
+        } else {
+            return view('inconsistent', [
+                'lambda' => $lambda,
+                'ci' => $ci,
+                'cr' => $cr
+            ]);
         }
-
-        return view('test', ['kons'=>$A, 'status'=>$kons]);
     }
 }
