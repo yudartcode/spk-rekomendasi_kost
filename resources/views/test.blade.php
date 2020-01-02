@@ -8,5 +8,8 @@
 </head>
 <body>
     <h1 style="color: green">SUCCESS</h1>
+    @isset($kons)
+        {{$kons}} - {{$status}}
+    @endisset
 </body>
 </html>

@@ -22,12 +22,6 @@ class NilaiPreferensi extends Controller
             $pref->save();
         }
 
-        $pref = Temp_Nilai_Pref::all();
-        foreach ($pref as $key) {
-            $key->val = round($key->val, 5);
-            $key->save();
-        }
-
         return view('test');
     }
 }

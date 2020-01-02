@@ -33,12 +33,12 @@ class NormalisasiKriteria extends Controller
         for ($i = 0; $i < 6; $i++) {
             $temp = new Temp_Normalisasi_Kriteria;
             $temp->kriteria = $kriteria[$i];
-            $temp->jarak_kampus = round(($matrix[$i]->jarak_kampus / $sumJarakKampus), 5);
-            $temp->jarak_market = round(($matrix[$i]->jarak_market / $sumJarakMarket), 5);
-            $temp->harga = round(($matrix[$i]->harga / $sumHarga), 5);
-            $temp->kebersihan = round(($matrix[$i]->kebersihan / $sumKebersihan), 5);
-            $temp->keamanan = round(($matrix[$i]->keamanan / $sumKeamanan), 5);
-            $temp->fasilitas = round(($matrix[$i]->fasilitas / $sumFasilitas), 5);
+            $temp->jarak_kampus = (($matrix[$i]->jarak_kampus / $sumJarakKampus));
+            $temp->jarak_market = (($matrix[$i]->jarak_market / $sumJarakMarket));
+            $temp->harga = (($matrix[$i]->harga / $sumHarga));
+            $temp->kebersihan = (($matrix[$i]->kebersihan / $sumKebersihan));
+            $temp->keamanan = (($matrix[$i]->keamanan / $sumKeamanan));
+            $temp->fasilitas = (($matrix[$i]->fasilitas / $sumFasilitas));
             $temp->save();
         }
 
@@ -46,7 +46,7 @@ class NormalisasiKriteria extends Controller
         foreach ($mKriteria as $key) {
             $sum = $key->jarak_kampus + $key->jarak_market + $key->harga + $key->kebersihan + $key->keamanan + $key->fasilitas;
             $avg = $sum / 6;
-            $key->avg = round($avg, 5);
+            $key->avg = ($avg);
             $key->save();
         }
 

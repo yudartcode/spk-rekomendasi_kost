@@ -50,16 +50,16 @@ class UjiKonsistensi extends Controller
             $t += ($key->matrix_aw / $key->avg);
         }
         $t /= 6;
-        $t = round($t,5);
+        $t = ($t);
 
-        $ci = round(($t - 6)/(6-1),5);
-        $A = round($ci / 1.24, 5);
+        $ci = (($t - 6)/(6-1));
+        $A = ($ci / 1.24);
 
         $kons = "";
         if ($A <= 0.1) {
             $kons = "Konsisten";
         }
 
-        return view('test');
+        return view('test', ['kons'=>$A, 'status'=>$kons]);
     }
 }

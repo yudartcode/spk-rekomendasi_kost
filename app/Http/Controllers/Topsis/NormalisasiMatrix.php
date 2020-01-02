@@ -7,12 +7,19 @@ use Illuminate\Http\Request;
 use App\Kost;
 use App\Temp_Bobot;
 use App\Temp_Normalisasi;
+use App\Temp_Normalisasi_Kriteria;
 
 class NormalisasiMatrix extends Controller
 {   
     public function do()
     {
-        $bobot = Temp_Bobot::first();
+        $kriteria = Temp_Normalisasi_Kriteria::all();
+        $bobot = [];
+
+        for ($i=0; $i < 6; $i++) { 
+            $bobot[$i] = $kriteria[$i]->avg;
+        }
+
         $matrix = Kost::all();
 
         $sumJarakKampus = 0;
@@ -31,16 +38,18 @@ class NormalisasiMatrix extends Controller
             $sumFasilitas += pow($key->fasilitas, 2);
         }
 
+        $i = 0;
         foreach ($matrix as $key) {
             $temp = new Temp_Normalisasi;
             $temp->nama = $key->nama;
-            $temp->jarak_kampus = round(($key->jarak_kampus / sqrt($sumJarakKampus) * $bobot->jarak_kampus), 5);
-            $temp->jarak_market = round(($key->jarak_market / sqrt($sumJarakMarket) * $bobot->jarak_market), 5);
-            $temp->harga = round(($key->harga / sqrt($sumHarga) * $bobot->harga), 5);
-            $temp->kebersihan = round(($key->kebersihan / sqrt( $sumKebersihan) * $bobot->kebersihan), 5);
-            $temp->keamanan = round(( $key->keamanan / sqrt($sumKeamanan) * $bobot->keamanan), 5);
-            $temp->fasilitas = round(($key->fasilitas / sqrt($sumFasilitas) * $bobot->fasilitas), 5);
+            $temp->jarak_kampus = (($key->jarak_kampus / sqrt($sumJarakKampus) * $bobot[$i]));
+            $temp->jarak_market = (($key->jarak_market / sqrt($sumJarakMarket) * $bobot[$i]));
+            $temp->harga = (($key->harga / sqrt($sumHarga) * $bobot[$i]));
+            $temp->kebersihan = (($key->kebersihan / sqrt( $sumKebersihan) * $bobot[$i]));
+            $temp->keamanan = (( $key->keamanan / sqrt($sumKeamanan) * $bobot[$i]));
+            $temp->fasilitas = (($key->fasilitas / sqrt($sumFasilitas) * $bobot[$i]));
             $temp->save();
+            $i++;
         }
         
         return view('test');
