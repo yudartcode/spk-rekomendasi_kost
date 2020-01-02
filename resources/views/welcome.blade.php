@@ -1,5 +1,15 @@
 @extends('template')
-@section('header')
-    Selamat Datang di <br>
-    Sistem Pendukung Keputusan Rekomendasi Kost
+@section('content')
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to </br>Kost Recommendation System</h1>
+    <p class="lead">This system can give you a recommendation Kost for students which lecture at Bumigora University</p>
+    <hr class="my-4">
+    <p>We hope you helped using this system :)</p>
+    <p>Created by :</p>
+    (1710520118) Agung Eka Saputra <br>
+    (1710520112) L Yuda Rahmani Karnaen <br>
+    (1710510135) Farasut Widodo Malik <br>
+    (1710520113) Gilang Restu Alam <br><br>
+    <a class="btn btn-primary btn-lg" href="{{route('bobot')}}" role="button">Let's Rock</a>
+</div>
 @endsection

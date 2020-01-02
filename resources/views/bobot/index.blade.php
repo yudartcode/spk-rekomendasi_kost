@@ -5,7 +5,7 @@ Matrix Kriteria Berpasangan
 @section('content')
 <div class="card shadow">
     <div class="card-header">
-        <strong>Input</strong>
+        <strong>Input Nilai Matrix</strong>
     </div>
     <div class="card-body">
         <form action="{{route('bobot.store')}}" method="POST">
