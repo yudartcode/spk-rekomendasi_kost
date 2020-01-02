@@ -29,7 +29,7 @@ class NormalisasiKriteria extends Controller
             $sumFasilitas += $key->fasilitas;
         }
 
-        $kriteria = ['jarak_kampus', 'jarak_market', 'harga', 'kebersihan', 'keamanan', 'fasilitas'];
+        $kriteria = ['Jarak Kampus', 'Jarak Market', 'Harga', 'Kebersihan', 'Keamanan', 'Fasilitas'];
         for ($i = 0; $i < 6; $i++) {
             $temp = new Temp_Normalisasi_Kriteria;
             $temp->kriteria = $kriteria[$i];
