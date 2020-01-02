@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Temp_Bobot;
+use App\Http\Controllers\ClearTemp;
 use Illuminate\Http\Request;
 
 class BobotKontroller extends Controller
@@ -21,6 +22,9 @@ class BobotKontroller extends Controller
     public function store(Request $request)
     {
         $bobot = Temp_Bobot::all();
+
+        $clear = new ClearTemp;
+        $clear->do();
 
         foreach ($bobot as $key) {
             $key->delete();
