@@ -47,7 +47,7 @@ class NormalisasiKriteria extends Controller
             $sum = $key->jarak_kampus + $key->jarak_market + $key->harga + $key->kebersihan + $key->keamanan + $key->fasilitas;
             $avg = $sum / 6;
             $key->avg = ($avg);
-            $key->save();
+            $key->update();
         }
 
         return redirect()->route('ahp.uk');
