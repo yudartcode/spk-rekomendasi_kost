@@ -3,7 +3,7 @@
 Matrix Kriteria Berpasangan
 @endsection
 @section('content')
-<div class="card shadow">
+<div class="card shadow mb-4">
     <div class="card-header">
         <strong>Input Nilai Matrix</strong>
     </div>

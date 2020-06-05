@@ -4,6 +4,9 @@ Result
 @endsection
 @section('content')
 <div class="card shadow">
+    <div class="card-header">
+        <strong>Hasil Rekomendasi Kost</strong>
+    </div>
     <table class="table table-hover table-bordered">
         <thead>
             <tr>
@@ -15,7 +18,7 @@ Result
         <tbody>
             @foreach ($result as $i)
             <tr>
-            <td scope="row">{{$loop->iteration}}</th>
+                <td scope="row">{{$loop->iteration}}</th>
                 <td>{{$i->nama}}</td>
                 <td>{{$i->val}}</td>
             </tr>
@@ -23,6 +26,8 @@ Result
         </tbody>
     </table>
 
-        <a href="hitung-ulang" class="btn btn-primary">Hitung Ulang</a>
+    <div class="card-footer">
+        <a href="hitung-ulang" class="btn btn-primary float-right">Hitung Ulang</a>
+    </div>
 </div>
 @endsection
